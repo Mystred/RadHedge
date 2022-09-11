@@ -1,0 +1,11 @@
+# Get present price of pool tokens and marketcap before the price increase.
+CALL_METHOD ComponentAddress("${POOL}") "pool_token_price";
+
+# Update price of BTC for test environment to 24000 USDT (20% increase)
+CALL_METHOD ComponentAddress("${TEST_ENV}") "change_oracle_price" ResourceAddress("${BTC}") ResourceAddress("${USDT}") Decimal("24000");
+
+# Update price of ETH for test environment to 2200 USDT (10% increase)
+CALL_METHOD ComponentAddress("${TEST_ENV}") "change_oracle_price" ResourceAddress("${ETH}") ResourceAddress("${USDT}") Decimal("2200");
+
+# Get present price of pool tokens and marketcap after the price increase.
+CALL_METHOD ComponentAddress("${POOL}") "pool_token_price";

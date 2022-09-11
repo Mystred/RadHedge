@@ -1,0 +1,2 @@
+# Call a method that returns a vector with a list of all pool assets and their respective amounts.
+CALL_METHOD ComponentAddress("${POOL}") "get_assets_in_pool";

@@ -1,0 +1,18 @@
+# --------------- Collect transaction fees. ---------------
+
+# First: Push the pool manager badge to the worktop and then into a bucket.
+CALL_METHOD ComponentAddress("${ACC_ADDRESS1}") "withdraw_by_amount" Decimal("1") ResourceAddress("${ADMIN_BADGE}");
+TAKE_FROM_WORKTOP ResourceAddress("${ADMIN_BADGE}") Bucket("pool_manager_badge");
+
+# Generate a Proof.
+CREATE_PROOF_FROM_BUCKET Bucket("pool_manager_badge") Proof("pool_manager_proof");
+
+# Push to authorization zone
+PUSH_TO_AUTH_ZONE Proof("pool_manager_proof");
+
+# Change allocation of pool: Trade 20 Eth for BTC.
+CALL_METHOD ComponentAddress("${POOL}") "collect_fee";
+
+# Finish up this transaction
+# Take everything from the worktop and put it into the present account.
+CALL_METHOD_WITH_ALL_RESOURCES ComponentAddress("${ACC_ADDRESS1}") "deposit_batch";

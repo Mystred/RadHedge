@@ -1,0 +1,8 @@
+# Invest 10000 USDT into this pool.
+CALL_METHOD ComponentAddress("${ACC_ADDRESS1}") "withdraw_by_amount" Decimal("10000") ResourceAddress("${USDT}");
+TAKE_FROM_WORKTOP ResourceAddress("${USDT}") Bucket("usdt_bucket");
+CALL_METHOD ComponentAddress("${POOL}") "invest" Bucket("usdt_bucket");
+
+# The "invest" method returns a bucket of pool tokens. 
+# Take everything from the worktop and put it into the present account.
+CALL_METHOD_WITH_ALL_RESOURCES ComponentAddress("${ACC_ADDRESS1}") "deposit_batch";

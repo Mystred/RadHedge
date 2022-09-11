@@ -1,0 +1,12 @@
+# Visual studio code
+.vscode
+.history
+
+# macOS folder attributes
+.DS_Store
+
+# Rust auto-generated
+target/
+Cargo.lock
+**/*.rs.bk
+
